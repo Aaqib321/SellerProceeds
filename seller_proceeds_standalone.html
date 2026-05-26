@@ -80,13 +80,7 @@ header h1{font-size:1rem;font-weight:700;letter-spacing:-.02em}header p{font-siz
     <span id="act-icon">◎</span> All Sellers
   </button>
 </div>
-<div class="krow">
-  <div class="kpi k1"><label>Total GMS</label><div class="val" id="kv-gms">—</div></div>
-  <div class="kpi k2"><label>Net Proceeds</label><div class="val" id="kv-net">—</div></div>
-  <div class="kpi k3"><label>Referral + FBA P&amp;P Fees</label><div class="val" id="kv-fees">—</div></div>
-  <div class="kpi k4"><label>Units Shipped</label><div class="val" id="kv-units">—</div></div>
-  <div class="kpi k5"><label>Net Margin</label><div class="val" id="kv-mg">—</div></div>
-</div>
+
 <div class="tabs">
   <div class="tab on" onclick="sw('ov',this)">Overview</div>
   <div class="tab" onclick="sw('geo',this)">Geography</div>
@@ -236,8 +230,7 @@ function toggleActive(el){
   el.querySelector ? el.childNodes[1].textContent=(activeMode?' Active Only':' All Sellers') : null;
   el.innerHTML=(activeMode?'<span id="act-icon">●</span> Active Only':'<span id="act-icon">◎</span> All Sellers');
   el.classList.toggle('active',activeMode);
-  kpis();
-  if(BUILD[activeTab])BUILD[activeTab]();
+    if(BUILD[activeTab])BUILD[activeTab]();
 }
 function src(){return activeMode&&typeof D_ACT!=='undefined'?D_ACT:D;}
 
@@ -284,7 +277,6 @@ const GEO=['Domestic','OOC - CN','OOC - Others'];
 const ACCT=['Brand Owner','Reseller'];
 const geoC={'Domestic':'#88b0cc','OOC - CN':'#c89888','OOC - Others':'#c8a46a'};
 const acC={'Brand Owner':'#9898bc','Reseller':'#8aac88'};
-function kpis(){const s=src().summary||D.summary;document.getElementById('kv-gms').textContent=fB(s.gms);document.getElementById('kv-net').textContent=fB(s.net);document.getElementById('kv-fees').textContent=fB(s.fees);document.getElementById('kv-units').textContent=(s.units/1e9).toFixed(2)+'B';document.getElementById('kv-mg').textContent=s.net_pct_gms.toFixed(2)+'%';}
 function bldOv(){const _ts=D.total.year;npStrip('np-ov',[{l:'Total Net Proceeds',n:npTot(_ts,'','net'),s:'All sellers · Full period'},{l:'Total GMS',n:npTot(_ts,'','gms'),s:'Gross merchandise sales'},{l:'Total Fees',n:npTot(_ts,'','fees'),s:'Referral + FBA P&P'}]);const t=tab('total'),tm=t.times;const ovO=base();ovO.plugins.vlines={lines:feLines(grain)};mk('c-ov-trend','line',{labels:tm,datasets:[L('GMS',toB(gs(t,'','gms')),'#88b0cc',true),L('Net Proceeds',toB(gs(t,'','net')),'#8fba9e',true)]},ovO);mk('c-ov-mg','line',{labels:tm,datasets:[L('Net Margin %',gs(t,'','net_pct_gms'),'#72aeb0')]},pct({plugins:{legend:{display:false},tooltip:{backgroundColor:BG,borderColor:BB,borderWidth:1,bodyColor:'#606880',callbacks:{label:ctx=>` Margin: ${ctx.parsed.y.toFixed(2)}%`}}}}));mk('c-ov-fees','bar',{labels:tm,datasets:[B('Referral + FBA P&P',toB(gs(t,'','fees')),'#c8a46a')]},base({plugins:{legend:{display:false},tooltip:{backgroundColor:BG,borderColor:BB,borderWidth:1,bodyColor:'#606880',callbacks:{label:ctx=>` ${fB(ctx.parsed.y*1e9)}`}}}}));mk('c-ov-units','bar',{labels:tm,datasets:[B('Units (M)',toM(gs(t,'','units')),'#b8aa84')]},{...base(),plugins:{legend:{display:false},tooltip:{backgroundColor:BG,borderColor:BB,borderWidth:1,bodyColor:'#606880',callbacks:{label:ctx=>` ${ctx.parsed.y.toFixed(1)}M units`}}}});}
 function bldGeo(){const _gy=D.geo.year;npStrip('np-geo',GEO.map(d=>({l:d,n:npTot(_gy,d,'net'),s:fB(npTot(_gy,d,'gms'))+' GMS · '+(npTot(_gy,d,'net')/npTot(_gy,d,'gms')*100).toFixed(1)+'% margin'})));const t=tab('geo'),tm=t.times;mk('c-geo-gms','bar',{labels:tm,datasets:GEO.map(d=>B(d,toB(gs(t,d,'gms')),geoC[d]))},stackO());mk('c-geo-dn','doughnut',{labels:GEO,datasets:[{data:GEO.map(d=>tot(t,d,'gms')),backgroundColor:GEO.map(d=>a(geoC[d],.78)),borderColor:'#1a1d2a',borderWidth:3}]},donutO());mk('c-geo-mg','line',{labels:tm,datasets:GEO.map(d=>L(d,gs(t,d,'net_pct_gms'),geoC[d]))},pct());mk('c-geo-fee','line',{labels:tm,datasets:feeDs(t,GEO,d=>geoC[d])},pct());}
 function bldSeller(){const _ay=D.acct.year;npStrip('np-seller',ACCT.map(d=>({l:d,n:npTot(_ay,d,'net'),s:fB(npTot(_ay,d,'gms'))+' GMS'})));const t=tab('acct'),tm=t.times;mk('c-ac-gms','bar',{labels:tm,datasets:ACCT.map(d=>B(d,toB(gs(t,d,'gms')),acC[d]))},base());mk('c-ac-dn','doughnut',{labels:ACCT,datasets:[{data:ACCT.map(d=>tot(t,d,'gms')),backgroundColor:ACCT.map(d=>a(acC[d],.78)),borderColor:'#1a1d2a',borderWidth:3}]},donutO());mk('c-ac-mg','line',{labels:tm,datasets:ACCT.map(d=>L(d,gs(t,d,'net_pct_gms'),acC[d]))},pct());mk('c-ac-fee','line',{labels:tm,datasets:feeDs(t,ACCT,d=>acC[d])},pct());}
@@ -482,7 +474,7 @@ function bldFeeEvents(){
 const BUILD={ov:bldOv,geo:bldGeo,seller:bldSeller,pf:bldPF,ch:bldCh,cross:bldCross,inc:bldInc,ratio:bldRatio,fees:bldFeeEvents};
 function sw(name,el){activeTab=name;document.querySelectorAll('.panel').forEach(p=>p.classList.remove('on'));document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));document.getElementById('p-'+name).classList.add('on');el.classList.add('on');if(BUILD[name])BUILD[name]();}
 function setGrain(g,el){grain=g;document.querySelectorAll('.gbtn').forEach(b=>b.classList.remove('on'));el.classList.add('on');if(BUILD[activeTab])BUILD[activeTab]();}
-kpis();bldOv();
+bldOv();
 </script>
 </body>
 </html>
