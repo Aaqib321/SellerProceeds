@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background:#f8f9fa; padding:24px; }
+  h2 { font-size:15px; color:#222; margin-bottom:4px; }
+  .sub { font-size:11px; color:#888; margin-bottom:16px; }
+  table { border-collapse:collapse; font-size:12.5px; background:#fff; box-shadow:0 1px 4px rgba(0,0,0,.1); }
+  th { background:#1a1a2e; color:#fff; padding:8px 11px; text-align:right; font-weight:600; white-space:nowrap; }
+  th:first-child { text-align:left; min-width:180px; }
+  td { padding:6px 11px; text-align:right; border-bottom:1px solid #eee; color:#333; }
+  td:first-child { text-align:left; font-size:12px; }
+
+  /* section header rows */
+  .sec-hdr td { background:#e8edf5; color:#1a1a2e; font-weight:700; font-size:11px;
+                letter-spacing:.08em; text-transform:uppercase; border-top:2px solid #1a1a2e; }
+  /* nominal rows */
+  .nom td { background:#fff; }
+  /* SAC adj rows */
+  .adj td { background:#f7fbff; color:#555; font-size:11.5px; font-style:italic; }
+  .adj td:first-child::before { content:"↳ "; color:#aaa; }
+
+  /* delta column */
+  .pos { color:#1a7a4a; font-weight:700; }
+  .neg { color:#c0392b; font-weight:700; }
+  .flat { color:#888; }
+
+  /* year values — subtle heat */
+  .v-hi { color:#1a5276; }
+  .v-lo { color:#922b21; }
+
+  tr:hover td { background:#f0f4ff !important; }
+  .yr-col { width:52px; }
+  .delta-col { border-left:2px solid #ddd; font-weight:600; }
+</style>
+</head>
+<body>
+<h2>Seller Proceeds % — Annual Trend 2021–2026</h2>
+<div class="sub">Seller-level medians · Nominal and SAC-adjusted (carrier cost deducted from MFN units) · 2026 = Q1–Q2 partial year</div>
+
+<table>
+<thead>
+  <tr>
+    <th>Cohort</th>
+    <th class="yr-col">2021</th>
+    <th class="yr-col">2022</th>
+    <th class="yr-col">2023</th>
+    <th class="yr-col">2024</th>
+    <th class="yr-col">2025</th>
+    <th class="yr-col">2026*</th>
+    <th class="delta-col">Δ 21→26</th>
+  </tr>
+</thead>
+<tbody>
+
+<!-- SELLER TYPE -->
+<tr class="sec-hdr"><td colspan="8">Seller Type</td></tr>
+
+<tr class="nom">
+  <td>Brand Owner</td>
+  <td>58.9%</td><td>59.4%</td><td>58.3%</td><td>58.2%</td><td>58.4%</td><td>60.5%</td>
+  <td class="delta-col pos">+1.6pp</td>
+</tr>
+<tr class="adj">
+  <td>Brand Owner</td>
+  <td>55.0%</td><td>55.8%</td><td>54.6%</td><td>54.0%</td><td>53.8%</td><td>55.7%</td>
+  <td class="delta-col flat">+0.7pp</td>
+</tr>
+
+<tr class="nom">
+  <td>Reseller</td>
+  <td>69.8%</td><td>70.3%</td><td>70.5%</td><td>71.0%</td><td>71.4%</td><td>72.3%</td>
+  <td class="delta-col pos">+2.5pp</td>
+</tr>
+<tr class="adj">
+  <td>Reseller</td>
+  <td>59.2%</td><td>60.5%</td><td>60.8%</td><td>60.1%</td><td>60.4%</td><td>61.2%</td>
+  <td class="delta-col pos">+2.0pp</td>
+</tr>
+
+<!-- FULFILLMENT -->
+<tr class="sec-hdr"><td colspan="8">Fulfillment Mix</td></tr>
+
+<tr class="nom">
+  <td>MFN-100%</td>
+  <td>76.0%</td><td>76.2%</td><td>76.2%</td><td>76.0%</td><td>75.5%</td><td>75.5%</td>
+  <td class="delta-col neg">−0.5pp</td>
+</tr>
+<tr class="adj">
+  <td>MFN-100%</td>
+  <td>60.4%</td><td>61.1%</td><td>61.5%</td><td>60.3%</td><td>60.1%</td><td>59.8%</td>
+  <td class="delta-col neg">−0.6pp</td>
+</tr>
+
+<tr class="nom">
+  <td>Light FBA (0–33%)</td>
+  <td>77.7%</td><td>76.8%</td><td>76.3%</td><td>75.5%</td><td>75.3%</td><td>76.0%</td>
+  <td class="delta-col neg">−1.7pp</td>
+</tr>
+<tr class="adj">
+  <td>Light FBA (0–33%)</td>
+  <td>66.0%</td><td>65.4%</td><td>65.0%</td><td>63.0%</td><td>62.8%</td><td>63.1%</td>
+  <td class="delta-col neg">−2.9pp</td>
+</tr>
+
+<tr class="nom">
+  <td>Mid FBA (34–66%)</td>
+  <td>71.0%</td><td>70.8%</td><td>70.2%</td><td>69.6%</td><td>69.4%</td><td>69.8%</td>
+  <td class="delta-col neg">−1.2pp</td>
+</tr>
+<tr class="adj">
+  <td>Mid FBA (34–66%)</td>
+  <td>64.0%</td><td>64.1%</td><td>63.5%</td><td>62.0%</td><td>61.6%</td><td>62.0%</td>
+  <td class="delta-col neg">−2.0pp</td>
+</tr>
+
+<tr class="nom">
+  <td>Heavy FBA (67–99%)</td>
+  <td>62.1%</td><td>63.3%</td><td>62.9%</td><td>62.1%</td><td>61.2%</td><td>62.7%</td>
+  <td class="delta-col pos">+0.6pp</td>
+</tr>
+<tr class="adj">
+  <td>Heavy FBA (67–99%)</td>
+  <td>60.6%</td><td>61.7%</td><td>61.3%</td><td>60.3%</td><td>59.5%</td><td>60.8%</td>
+  <td class="delta-col flat">+0.2pp</td>
+</tr>
+
+<tr class="nom">
+  <td>FBA-100%</td>
+  <td>51.2%</td><td>53.3%</td><td>51.8%</td><td>51.5%</td><td>51.4%</td><td>54.3%</td>
+  <td class="delta-col pos">+3.1pp</td>
+</tr>
+<tr class="adj">
+  <td>FBA-100%</td>
+  <td>51.2%</td><td>53.3%</td><td>51.8%</td><td>51.5%</td><td>51.4%</td><td>54.3%</td>
+  <td class="delta-col pos">+3.1pp</td>
+</tr>
+
+<!-- GEOGRAPHY -->
+<tr class="sec-hdr"><td colspan="8">Geography</td></tr>
+
+<tr class="nom">
+  <td>Domestic</td>
+  <td>73.1%</td><td>72.3%</td><td>71.4%</td><td>71.0%</td><td>70.7%</td><td>71.6%</td>
+  <td class="delta-col neg">−1.5pp</td>
+</tr>
+<tr class="adj">
+  <td>Domestic</td>
+  <td>64.6%</td><td>64.2%</td><td>63.4%</td><td>62.0%</td><td>62.0%</td><td>62.9%</td>
+  <td class="delta-col neg">−1.7pp</td>
+</tr>
+
+<tr class="nom">
+  <td>China OOC</td>
+  <td>53.9%</td><td>57.4%</td><td>57.2%</td><td>58.1%</td><td>58.8%</td><td>60.1%</td>
+  <td class="delta-col pos">+6.2pp</td>
+</tr>
+<tr class="adj">
+  <td>China OOC</td>
+  <td>48.4%</td><td>51.8%</td><td>51.7%</td><td>51.7%</td><td>51.6%</td><td>52.9%</td>
+  <td class="delta-col pos">+4.5pp</td>
+</tr>
+
+<tr class="nom">
+  <td>Other OOC</td>
+  <td>66.4%</td><td>68.4%</td><td>66.1%</td><td>63.8%</td><td>63.5%</td><td>64.6%</td>
+  <td class="delta-col neg">−1.8pp</td>
+</tr>
+<tr class="adj">
+  <td>Other OOC</td>
+  <td>60.4%</td><td>62.4%</td><td>60.2%</td><td>57.4%</td><td>58.2%</td><td>60.4%</td>
+  <td class="delta-col flat">0.0pp</td>
+</tr>
+
+</tbody>
+</table>
+<div class="sub" style="margin-top:10px;">*2026 covers Q1–Q2 only — partial year, interpret with caution</div>
+</body>
+</html>
